@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作品详情 · 星语计划 —— 非遗掐丝 星梦成真</title>
+  <meta name="description" content="了解一件掐丝珐琅作品背后的创作故事与工序，义卖收入 30% 定向捐赠中国残疾人福利基金会。">
+  <link rel="icon" href="images/logo-icon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css?v=i">
+</head>
+<body data-page="works">
+
+  <div id="app-header"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="crumb" id="crumb"></nav>
+      <span class="eyebrow">STAR GALLERY · 作品详情</span>
+      <h1 id="heroTitle">作品详情</h1>
+      <p>购买的不只是一件掐丝珐琅作品，更是一份对特殊少年才华的认可。</p>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <div class="container">
+      <div class="detail-layout">
+        <!-- 图片区域 -->
+        <div class="detail-gallery">
+          <div class="gallery-main" id="galleryMain">
+            <img id="mainImage" src="" alt="作品大图">
+          </div>
+          <div class="gallery-thumbs" id="galleryThumbs"></div>
+        </div>
+
+        <!-- 作品信息 -->
+        <div class="detail-info-card" id="infoCard"></div>
+      </div>
+
+      <!-- 创作故事 / 工艺特点 -->
+      <div class="detail-sections">
+        <div class="panel story-box">
+          <h3>创作故事</h3>
+          <div class="story-text" id="storyText"></div>
+        </div>
+        <div class="panel">
+          <h3>工艺特点</h3>
+          <ul class="feature-list" id="featureList"></ul>
+        </div>
+      </div>
+
+      <!-- 作者档案 -->
+      <div class="student-panel" id="studentPanel"></div>
+    </div>
+  </section>
+
+  <!-- 同类推荐 -->
+  <section class="related-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">MORE WORKS · 更多作品</span>
+        <h2>你可能还会喜欢</h2>
+      </div>
+      <div class="work-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+
+  <div id="app-footer"></div>
+
+  <script src="js/data.js?v=i"></script>
+
+  <script src="js/api.js?v=i"></script>
+  <script src="js/main.js?v=i"></script>
+  <script src="js/detail.js?v=i"></script>
+</body>
+</html>

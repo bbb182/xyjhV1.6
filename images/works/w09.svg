@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F4EEE2"/>
+      <stop offset="1" stop-color="#E9E0CE"/>
+    </linearGradient>
+    <linearGradient id="indigo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4A6B8E"/>
+      <stop offset=".55" stop-color="#33526F"/>
+      <stop offset="1" stop-color="#2C4663"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <g opacity=".6">
+    <circle cx="120" cy="110" r="26" fill="#A7CDB4"/>
+    <circle cx="690" cy="500" r="24" fill="#F2B8C6"/>
+  </g>
+  <g transform="translate(400 310) rotate(-6)">
+    <path d="M-360 -30 C-240 -100 -120 -100 0 -60 C120 -100 240 -100 360 -30 L360 34 C240 -36 120 -36 0 4 C-120 -36 -240 -36 -360 34 Z" fill="url(#indigo)"/>
+    <path d="M-340 -18 C-230 -84 -130 -84 0 -46 C130 -84 230 -84 340 -18 L340 22 C230 -44 130 -44 0 -6 C-130 -44 -230 -44 -340 22 Z" fill="#5B93C8" opacity=".5"/>
+    <g fill="#FFF6DE">
+      <path d="M-180 -54 C-177 -44 -171 -39 -161 -36 C-171 -33 -177 -28 -180 -18 C-183 -28 -189 -33 -199 -36 C-189 -39 -183 -44 -180 -54 Z" opacity=".9"/>
+      <path d="M0 -44 C3 -34 9 -29 19 -26 C9 -23 3 -18 0 -8 C-3 -18 -9 -23 -19 -26 C-9 -29 -3 -34 0 -44 Z" opacity=".95"/>
+      <path d="M180 -54 C183 -44 189 -39 199 -36 C189 -33 183 -28 180 -18 C177 -28 171 -33 161 -36 C171 -39 177 -44 180 -54 Z" opacity=".9"/>
+      <circle cx="-90" cy="-30" r="5" opacity=".8"/>
+      <circle cx="90" cy="-30" r="5" opacity=".8"/>
+    </g>
+    <path d="M-160 14 C-80 -8 0 -8 80 14" stroke="#FFF6DE" stroke-opacity=".55" stroke-width="3" fill="none" stroke-dasharray="6 8"/>
+    <path d="M-100 2 C-50 -12 0 -12 50 2" stroke="#FFF6DE" stroke-opacity=".4" stroke-width="2" fill="none" stroke-dasharray="4 7"/>
+  </g>
+</svg>

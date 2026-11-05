@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>星语计划 · 非遗掐丝 星梦成真｜特殊少年原创掐丝珐琅公益义卖平台</title>
+  <meta name="description" content="星语计划——非遗掐丝 星梦成真：在太原市小店区特殊教育中心小学校开设掐丝珐琅陪伴式课堂，以「天赋发掘 → 作品创作 → 公益义卖 → 善款反哺」的闭环，让每一颗星星都被看见。">
+  <link rel="icon" href="images/logo-icon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css?v=i">
+  <style>
+    /* 页头 / 页脚 logo：使用裁掉文字的 images/logo-icon.png（964×668，仅星星图标）。
+       注意 style.css:55 有全局 img,svg{display:block}，图片是块级元素。
+       logo 槽是 44×44 正方形 + border-radius:14px 圆角（style.css:145）。
+       图标横向比纵向宽，必须用 cover 铺满，否则 contain 会左右留白、
+       把正方形槽撑成长方形；cover 只裁掉两侧多余的空白，星星主体完整。 */
+    .badge-mark img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+    .site-footer .logo-mark.badge-mark{background:#fff}
+    /* ── 数据展示区居中 ───────────────────────────────────
+       style.css:402 把 .stats-grid 写死成 repeat(4,1fr)，但计划书口径只有
+       3 个数据卡，第四格空置 → 整组被挤到左侧，右侧空出约 1/4。
+       改用 flex：3 张卡等分铺满整行（justify-content:space-between），
+       视觉上与原来「挤在左侧」差别明显，卡数变化也不会留空格子。
+       注：只调 gap 效果看不出来 —— 150px 卡宽 ×3 + 168px 间距 = 618px，
+       而容器可用 1052px，居中后左右各留白 217px，仍是「中间一坨」。 */
+    .stats-band .stats-grid{
+      display:flex;flex-wrap:wrap;justify-content:space-between;
+      gap:48px 40px;max-width:980px;
+    }
+    .stats-band .stat-card{flex:1 1 0;min-width:150px;max-width:320px}
+    @media (max-width:1024px){
+      .stats-band .stats-grid{justify-content:center;gap:40px 52px;max-width:1100px}
+      .stats-band .stat-card{flex:0 1 auto}
+    }
+    @media (max-width:600px){
+      .stats-band .stats-grid{gap:30px 30px}
+      .stats-band .stat-card{min-width:112px}
+    }
+    /* ── 页脚「联系我们」重做 ─────────────────────────────
+       问题：style.css:840 的 .footer-contact li 是 flex 容器，原先
+       「电话：」是裸文本、号码是 <a>，在 flex 里各自成为独立 item，
+       号码起点由标签宽度决定，无法对齐；列宽不足时还会被折成两行。
+       方案：显式 flex + baseline 对齐，并把 li 内整体 nowrap 关闭换行，
+       再用 gap 兜底兼容旧缓存 CSS。
+       注意：地址那一行没有 <a>，「地址：」是裸文本节点，必须靠 li 上的
+       nowrap 约束，否则会在窄列里被单独折到第二行（截图里的现象）。 */
+    .site-footer .footer-contact li{
+      display:flex;align-items:baseline;gap:10px;
+      padding:0;margin-bottom:11px;font-size:14px;line-height:1.5;
+      white-space:nowrap;
+    }
+    .site-footer .footer-contact li:last-child{margin-bottom:0}
+    .site-footer .footer-contact .ico{flex:0 0 22px;text-align:center;font-size:15px;line-height:1.2}
+    .site-footer .footer-contact i{font-style:normal;color:rgba(255,255,255,.62)}
+    .site-footer .footer-contact a{color:#fff;text-decoration:none;white-space:nowrap}
+    .site-footer .footer-contact a:hover{color:var(--yellow)}
+    .site-footer .footer-contact a:focus-visible{outline:2px solid var(--yellow);outline-offset:2px;border-radius:4px}
+    @media (min-width:1025px){
+      /* style.css:826 的 grid 是 1.6fr 1fr 1fr 1.3fr，1fr 是弹性下限，
+         长邮箱会把「联系我们」列压窄到放不下从而折行。
+         故在四列布局生效的区间给该列一个 300px 下限；
+         区间下限必须与 style.css:864 的 1024px 断点对齐（超过即变两列）。 */
+      .site-footer .footer-grid{grid-template-columns:1.6fr 0.9fr 0.9fr minmax(300px,1.4fr)}
+    }
+    @media (max-width:480px){
+      /* 375px 极窄屏：邮箱一行约需 277px，余量仅 2px，故降一档字号；
+         再窄就把「电话/邮箱/地址」标签隐藏，只留图标，彻底避免折行。 */
+      .site-footer .footer-contact li{font-size:13px}
+      .site-footer .footer-contact .ico{font-size:14px}
+      .site-footer .footer-contact i{display:none}
+    }
+    /* 首屏主视觉改为校徽：正方形（高 = 宽）。
+       .hero-visual .art 原有 rotate(1.2deg) 倾斜，方形外框倾斜一眼就能看出歪，
+       故此处单独摆正；宽度用 max-width 与容器一起收缩，窄屏不会溢出。 */
+    .hero-visual .art.art-badge{width:100%;max-width:400px;margin:0 auto;aspect-ratio:1/1;transform:none}
+    .hero-visual .art.art-badge img{width:100%;height:100%;object-fit:cover;display:block}
+    /* 公益闭环第 6 步：style.css 只定义了 nth-child(1~5) 的圆点配色，且只在 1024px 以下
+       声明 repeat(5,1fr)。style.css 的 <link> 后加载，同优先级会覆盖本块，
+       故统一用 .flow-steps.fade-up 提高优先级，并镜像 style.css 的断点行为。 */
+    .flow-steps.fade-up{grid-template-columns:repeat(6,1fr)}
+    .flow-steps .flow-step:nth-child(6) .flow-num{background:linear-gradient(135deg,#8FD4DC,var(--blue))}
+    .hero-mini-stats .mini-stat b{letter-spacing:0}
+    @media (max-width:1180px){
+      .flow-steps.fade-up{grid-template-columns:repeat(4,1fr);row-gap:28px}
+    }
+    @media (max-width:1024px){
+      .flow-steps.fade-up{grid-template-columns:repeat(3,1fr);row-gap:30px}
+    }
+    @media (max-width:820px){
+      .flow-steps.fade-up{grid-template-columns:1fr;row-gap:34px;max-width:420px;margin:0 auto}
+    }
+  </style>
+</head>
+<body data-page="index">
+
+  <div id="app-header"></div>
+
+  <!-- ==================== 首屏 ==================== -->
+  <section class="hero">
+    <span class="sparkle" style="top:18%;left:7%"></span>
+    <span class="sparkle lav" style="top:64%;left:44%;animation-delay:1.2s"></span>
+    <span class="sparkle blue" style="top:30%;right:8%;animation-delay:.6s"></span>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="hero-kicker"><span class="dot"></span>非遗掐丝 · 星光闪耀 · 以爱为桥 · 善意回响</span>
+        <h1 class="hero-title">让每一颗<span class="star-word">星星</span><br>都被看见</h1>
+        <p class="hero-sub">用非遗掐丝珐琅，接住特殊少年的天赋表达。</p>
+        <p class="hero-quote">“特殊并非缺陷，只是天赋的表达方式与众不同。”</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="works.html">浏览作品 →</a>
+          <a class="btn btn-warm btn-lg" href="mall.html">支持公益 ♥</a>
+        </div>
+        <div class="hero-mini-stats">
+          <div class="mini-stat"><b data-count="549" data-suffix="名">549名</b><span>合作校特殊儿童</span></div>
+          <div class="mini-stat"><b data-count="32" data-suffix="名">32名</b><span>课堂已覆盖</span></div>
+          <div class="mini-stat"><b data-count="20" data-suffix="名">20名</b><span>高校志愿者</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <!-- 首屏主视觉：由原野插画改为校徽（师生共同完成的掐丝珐琅作品）。
+             1:1 正方形（高 = 宽），宽度由列宽决定、随容器自适应；
+             原 images/hero.svg 已不再引用，如需回退把本行换成该插画即可。 -->
+        <div class="art art-badge">
+          <img src="images/school-badge.png" alt="山西应用科技学院校徽 · 师生共同完成的掐丝珐琅作品">
+        </div>
+        <div class="hero-float-card one">
+          <img src="images/works/jsls-01-shanshui.png" alt="金山蓝海 · 日月同辉">
+          <div><b>金山蓝海 · 日月同辉</b><span>小宇 · 已售 18</span></div>
+          <span class="heart">♥</span>
+        </div>
+        <div class="hero-float-card two">
+          <img src="images/works/jsls-02-yinxing.png" alt="一叶知秋 · 银杏">
+          <div><b>一叶知秋 · 银杏</b><span>彤彤 · 掐丝珐琅</span></div>
+          <span class="heart">♥</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 理念横幅 ==================== -->
+  <div class="quote-band">
+    <blockquote>“特殊并非缺陷，只是天赋的表达方式与众不同。”</blockquote>
+    <p>STAR LANGUAGE PROJECT · 非遗掐丝 星梦成真 · 天赋发掘 → 作品创作 → 公益义卖 → 善款反哺</p>
+  </div>
+
+  <!-- ==================== 项目理念 ==================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">ABOUT US · 我们相信</span>
+        <h2>星语计划，不只是<span><em>一个平台</em></span></h2>
+        <p>这里展示特殊少年的天赋与作品，也传播他们的成长故事，连接每一份善意的支持。</p>
+      </div>
+      <div class="pillar-grid fade-up" id="pillars"></div>
+    </div>
+  </section>
+
+  <!-- ==================== 公益闭环 ==================== -->
+  <section class="flow-band">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow warm">OUR MODEL · 四向反哺</span>
+        <h2>从天赋发掘，到善款反哺</h2>
+        <p>义卖所得按「取之于星，用之于星」的原则，流向家庭、学校、公益机构与每一位购买者。</p>
+      </div>
+      <div class="flow-steps fade-up" id="flowSteps"></div>
+    </div>
+  </section>
+
+  <!-- ==================== 热门作品 ==================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">STAR GALLERY · 非遗掐丝珐琅</span>
+        <h2>一金一丝，皆是星光</h2>
+        <p>取丝、弯折、粘贴、填色——每一件作品都由孩子亲手完成，附专属故事卡与爱心证书。</p>
+      </div>
+      <div class="work-grid fade-up" id="hotWorks"></div>
+      <div style="text-align:center">
+        <a class="link-more" href="works.html">进入线上艺术馆，浏览全部作品 <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 星星故事 ==================== -->
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow lav">STORIES · 星光故事</span>
+        <h2>成长，是一段发光的旅程</h2>
+        <p>我们为每位孩子建立「一人一档」天赋档案，从第一次握起金丝，到作品被陌生人收藏。</p>
+      </div>
+      <div class="story-preview-grid fade-up" id="storyPreview"></div>
+      <div style="text-align:center">
+        <a class="link-more" href="stories.html">阅读更多星星的故事 <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 数据展示 ==================== -->
+  <section class="stats-band" id="statsBand"></section>
+
+  <!-- ==================== 支持方式 ==================== -->
+  <section class="section">
+    <div class="support-band">
+      <div class="support-card fade-up">
+        <span class="sparkle" style="top:22px;left:32px"></span>
+        <span class="sparkle lav" style="bottom:26px;right:34px;animation-delay:1s"></span>
+        <div>
+          <h2>你的每一次支持，都会点亮一颗星星</h2>
+          <p>购买一件掐丝珐琅原创作品、为企业定制一份文创礼品、成为一位志愿者——无论以哪种方式，你都在把特殊少年从「被救助者」变成「价值创造者」。义卖收入的 30% 定向捐赠中国残疾人福利基金会，每一笔都可追溯。</p>
+        </div>
+        <div class="support-actions">
+          <a class="btn btn-primary btn-lg" href="mall.html">立即支持</a>
+          <a class="btn btn-ghost btn-lg" href="join.html">了解更多</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="app-footer"></div>
+
+  <script src="js/data.js?v=i"></script>
+
+  <script src="js/api.js?v=i"></script>
+  <script src="js/main.js?v=i"></script>
+  <script src="js/home.js?v=i"></script>
+</body>
+</html>

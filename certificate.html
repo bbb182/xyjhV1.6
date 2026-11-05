@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱心证书查询 · 星语计划 —— 非遗掐丝 星梦成真</title>
+  <meta name="description" content="输入义卖订单号，查询你的爱心证书：捐赠金额、受助儿童编号与善款去向，全部可追溯。">
+  <link rel="icon" href="images/logo-icon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css?v=i">
+  <style>
+    .cert-wrap{max-width:860px;margin:0 auto}
+    .cert-query{background:#fff;border-radius:var(--r-lg);padding:32px;box-shadow:var(--shadow-sm)}
+    .cert-query h2{font-size:22px;margin-bottom:10px}
+    .cert-query p{font-size:14px;color:var(--ink-3);margin-bottom:22px;line-height:1.7}
+    .cert-form{display:flex;gap:12px;flex-wrap:wrap}
+    .cert-form input{flex:1 1 260px;height:48px;border:1px solid var(--line);border-radius:12px;padding:0 16px;font-size:15px;background:var(--cream);color:var(--ink);outline:none}
+    .cert-form input:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+    .cert-form button{flex:0 0 auto;height:48px;padding:0 28px}
+    .cert-hint{font-size:12.5px;color:var(--ink-3);margin-top:14px}
+    .cert-hint code{background:rgba(38,67,95,.06);padding:2px 6px;border-radius:6px}
+
+    .certificate{margin-top:28px;border-radius:var(--r-lg);padding:2px;background:linear-gradient(135deg,var(--yellow-deep),var(--blue-deep),var(--lav-deep))}
+    .cert-inner{background:#fff;border-radius:calc(var(--r-lg) - 2px);padding:40px 42px;position:relative;overflow:hidden}
+    .cert-inner::after{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:var(--yellow-soft);opacity:.55}
+    .cert-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;position:relative;z-index:1}
+    .cert-title{font-size:26px;letter-spacing:6px;color:var(--blue-dark)}
+    .cert-title small{display:block;font-size:11.5px;letter-spacing:3px;color:var(--ink-3);margin-top:8px}
+    .cert-no{font-size:12.5px;color:var(--ink-3);text-align:right}
+    .cert-no b{display:block;font-size:15px;color:var(--ink);letter-spacing:1px;margin-top:4px}
+    .cert-body{margin-top:26px;position:relative;z-index:1}
+    .cert-line{display:flex;gap:8px;font-size:14.5px;color:var(--ink-2);line-height:1.9}
+    .cert-line span:first-child{color:var(--ink-3);min-width:96px}
+    .cert-items{list-style:none;margin:10px 0 18px;padding:0}
+    .cert-items li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:14px}
+    .cert-items li b{color:var(--ink)}
+    .cert-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0 6px}
+    .cert-stat{background:var(--cream);border-radius:14px;padding:16px 18px}
+    .cert-stat span{display:block;font-size:12.5px;color:var(--ink-3)}
+    .cert-stat b{display:block;font-size:20px;color:var(--blue-dark);margin-top:6px}
+    .cert-stat.warm b{color:var(--yellow-deep)}
+    .cert-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-top:26px;padding-top:18px;border-top:1px solid var(--line);position:relative;z-index:1}
+    .cert-foot p{font-size:12.5px;color:var(--ink-3);line-height:1.8;max-width:460px}
+    .cert-seal{text-align:center;color:var(--rose);border:2px solid var(--rose);border-radius:50%;width:92px;height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;line-height:1.5;transform:rotate(-8deg);opacity:.85}
+    .cert-seal b{font-size:15px;letter-spacing:1px}
+    .cert-msg{margin-top:22px;border-radius:14px;padding:16px 20px;font-size:14px;display:none}
+    .cert-msg.error{display:block;background:var(--rose-soft,#FBEFF2);color:#9B3A57}
+    .cert-msg.info{display:block;background:var(--blue-soft);color:var(--blue-deep)}
+    @media (max-width:640px){
+      .cert-inner{padding:28px 22px}
+      .cert-stats{grid-template-columns:1fr}
+      .cert-title{font-size:22px;letter-spacing:4px}
+    }
+    @media print{
+      body{background:#fff}
+      #app-header,#app-footer,.cert-query,.page-hero,.back-top{display:none !important}
+      .certificate{margin:0;box-shadow:none}
+    }
+  </style>
+</head>
+<body data-page="certificate">
+
+  <div id="app-header"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="crumb"><a href="index.html">首页</a><span class="sep">/</span><span>爱心证书</span></nav>
+      <span class="eyebrow warm">CERTIFICATE · 爱心证书</span>
+      <h1>爱心证书查询</h1>
+      <p>购买即捐赠。输入义卖订单号，查看捐赠金额、受助儿童编号与善款去向——每一份善意都可追溯。</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:12px">
+    <div class="container">
+      <div class="cert-wrap">
+        <div class="cert-query fade-up">
+          <h2>输入订单号</h2>
+          <p>订单号在下单成功时展示，也可在「公益商城」下单后获得。示例：<code>XY20260825001</code></p>
+          <form class="cert-form" id="certForm">
+            <input type="text" id="certNo" placeholder="请输入订单号，如 XY20260825001" autocomplete="off">
+            <button class="btn btn-primary" type="submit">查询证书</button>
+          </form>
+          <div class="cert-hint" id="certHint"></div>
+        </div>
+
+        <div class="cert-msg" id="certMsg"></div>
+        <div id="certResult"></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="app-footer"></div>
+
+  <script src="js/data.js?v=i"></script>
+  <script src="js/api.js?v=i"></script>
+  <script src="js/main.js?v=i"></script>
+  <script src="js/certificate.js?v=i"></script>
+</body>
+</html>

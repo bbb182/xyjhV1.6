@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理后台 · 星语计划</title>
+  <meta name="description" content="星语计划管理后台原型：学生管理、作品管理、商城管理与公益管理。">
+  <link rel="icon" href="images/logo-icon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css?v=i">
+  <style>
+    /* 状态徽章与关键字段不换行，避免「待审核」被拆成两行 */
+    .admin-table .badge{white-space:nowrap}
+    #applicationsTable td:nth-child(3),
+    #applicationsTable td:nth-child(4),
+    #applicationsTable td:nth-child(7){white-space:nowrap}
+  </style>
+</head>
+<body class="admin-body" data-page="admin">
+
+  <div class="admin-layout">
+    <!-- 侧边栏 -->
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <img src="images/logo-icon.png" alt="星语计划">
+        <div><b>星语计划</b><span>管理后台原型</span></div>
+      </div>
+      <nav class="admin-menu" id="adminMenu">
+        <div class="am-title">总览</div>
+        <button class="active" data-pane="dash"><span class="ico">▦</span>仪表盘</button>
+        <div class="am-title">内容管理</div>
+        <button data-pane="students"><span class="ico">✦</span>学生管理</button>
+        <button data-pane="works"><span class="ico">✎</span>作品管理</button>
+        <button data-pane="stories"><span class="ico">◈</span>成长记录</button>
+        <div class="am-title">商城管理</div>
+        <button data-pane="orders"><span class="ico">☰</span>订单管理</button>
+        <button data-pane="sales"><span class="ico">◔</span>销售统计</button>
+        <div class="am-title">公益管理</div>
+        <button data-pane="applications"><span class="ico">✉</span>申请管理</button>
+        <button data-pane="funds"><span class="ico">¤</span>资金记录</button>
+        <button data-pane="disclosure"><span class="ico">✓</span>披露中心</button>
+      </nav>
+    </aside>
+
+    <!-- 主区域 -->
+    <main class="admin-main">
+      <div class="admin-topbar">
+        <h2 id="paneTitle">仪表盘</h2>
+        <div class="right">
+          <input class="admin-search" id="adminSearch" type="text" placeholder="快速搜索当前列表">
+          <div class="admin-user"><img src="images/avatar/a2.svg" alt="管理员">管理员</div>
+        </div>
+      </div>
+
+      <!-- 仪表盘 -->
+      <div class="admin-pane active" data-pane="dash">
+        <div class="admin-stats" id="dashStats"></div>
+        <div class="admin-card">
+          <div class="ac-head"><h3>最近订单</h3><button class="btn btn-sm btn-ghost" data-goto="orders">查看全部</button></div>
+          <div class="admin-table-wrap"><table class="admin-table" id="dashOrders"></table></div>
+        </div>
+        <div class="admin-card">
+          <div class="ac-head"><h3>最新上架作品</h3><button class="btn btn-sm btn-ghost" data-goto="works">管理作品</button></div>
+          <div class="admin-table-wrap"><table class="admin-table" id="dashWorks"></table></div>
+        </div>
+        <div class="admin-card">
+          <div class="ac-head"><h3>最近资金动态</h3><button class="btn btn-sm btn-ghost" data-goto="funds">查看明细</button></div>
+          <div class="admin-table-wrap"><table class="admin-table" id="dashFunds"></table></div>
+        </div>
+      </div>
+
+      <!-- 学生管理 -->
+      <div class="admin-pane" data-pane="students">
+        <div class="admin-stats">
+          <div class="admin-stat"><span class="as-label">在册学生</span><div class="as-value">86<small> 人</small></div><span class="as-ico" style="--a-bg:var(--blue-soft)">✦</span></div>
+          <div class="admin-stat"><span class="as-label">在训学生</span><div class="as-value">64<small> 人</small></div><span class="as-ico" style="--a-bg:var(--yellow-soft)">✎</span></div>
+          <div class="admin-stat"><span class="as-label">本学期新增</span><div class="as-value">12<small> 人</small></div><span class="as-ico" style="--a-bg:var(--green-soft)">＋</span></div>
+          <div class="admin-stat"><span class="as-label">有作品产出</span><div class="as-value">41<small> 人</small></div><span class="as-ico" style="--a-bg:var(--lav-soft)">◈</span></div>
+        </div>
+        <div class="admin-card">
+          <div class="ac-head"><h3>学生档案</h3><button class="btn btn-sm btn-primary" data-demo="新增学生档案（正式版接入后端）">＋ 新增学生</button></div>
+          <div class="admin-table-wrap"><table class="admin-table" id="studentTable"></table></div>
+        </div>
+      </div>
+
+      <!-- 作品管理 -->
+      <div class="admin-pane" data-pane="works">
+        <div class="admin-card">
+          <div class="ac-head">
+            <h3>作品列表</h3>
+            <div class="admin-tabs" id="worksTabs" style="margin-bottom:0;margin-left:auto">
+              <button class="active" data-filter="all">全部</button>
+              <button data-filter="on">上架中</button>
+              <button data-filter="off">已下架</button>
+            </div>
+            <button class="btn btn-sm btn-primary" data-demo="上传作品（正式版接入文件与表单）">＋ 上传作品</button>
+          </div>
+          <div class="admin-table-wrap"><table class="admin-table" id="worksTable"></table></div>
+        </div>
+      </div>
+
+      <!-- 成长记录 -->
+      <div class="admin-pane" data-pane="stories">
+        <div class="admin-card">
+          <div class="ac-head"><h3>学生成长记录</h3><button class="btn btn-sm btn-primary" data-demo="新增成长记录（正式版接入表单）">＋ 新增记录</button></div>
+          <div class="admin-table-wrap"><table class="admin-table" id="milestoneTable"></table></div>
+        </div>
+      </div>
+
+      <!-- 订单管理 -->
+      <div class="admin-pane" data-pane="orders">
+        <div class="admin-stats">
+          <div class="admin-stat"><span class="as-label">今日订单</span><div class="as-value">26<small> 单</small></div><span class="as-ico" style="--a-bg:var(--blue-soft)">☰</span></div>
+          <div class="admin-stat"><span class="as-label">待处理</span><div class="as-value">8<small> 单</small></div><span class="as-ico" style="--a-bg:var(--yellow-soft)">◔</span></div>
+          <div class="admin-stat"><span class="as-label">本月销售额</span><div class="as-value">¥86,420</div><span class="as-ico" style="--a-bg:var(--green-soft)">¥</span></div>
+          <div class="admin-stat"><span class="as-label">退款率</span><div class="as-value">0.8<small>%</small></div><span class="as-ico" style="--a-bg:var(--lav-soft)">↺</span></div>
+        </div>
+        <div class="admin-card">
+          <div class="ac-head"><h3>全部订单</h3><span style="font-size:12.5px;color:var(--ink-3)">数据来自数据库（SQLite）</span></div>
+          <div class="admin-table-wrap"><table class="admin-table" id="ordersTable"></table></div>
+        </div>
+      </div>
+
+      <!-- 销售统计 -->
+      <div class="admin-pane" data-pane="sales">
+        <div class="admin-stats">
+          <div class="admin-stat"><span class="as-label">累计销售额</span><div class="as-value">¥128.6万</div><span class="as-ico" style="--a-bg:var(--blue-soft)">¥</span></div>
+          <div class="admin-stat"><span class="as-label">累计订单</span><div class="as-value">9,842<small> 单</small></div><span class="as-ico" style="--a-bg:var(--yellow-soft)">☰</span></div>
+          <div class="admin-stat"><span class="as-label">客单价</span><div class="as-value">¥130.7</div><span class="as-ico" style="--a-bg:var(--green-soft)">◔</span></div>
+          <div class="admin-stat"><span class="as-label">复购率</span><div class="as-value">23<small>%</small></div><span class="as-ico" style="--a-bg:var(--lav-soft)">↻</span></div>
+        </div>
+        <div class="admin-card">
+          <div class="ac-head"><h3>热销作品 Top 5</h3></div>
+          <div class="admin-table-wrap"><table class="admin-table" id="salesTable"></table></div>
+        </div>
+      </div>
+
+      <!-- 申请管理（数据库） -->
+      <div class="admin-pane" data-pane="applications">
+        <div class="admin-stats" id="appStats"></div>
+        <div class="admin-card">
+          <div class="ac-head">
+            <h3>报名与合作申请</h3>
+            <span style="font-size:12.5px;color:var(--ink-3)">数据来自数据库，可直接审核（通过 / 拒绝）</span>
+          </div>
+          <div class="admin-table-wrap"><table class="admin-table" id="applicationsTable"></table></div>
+        </div>
+      </div>
+
+      <!-- 资金记录 -->
+      <div class="admin-pane" data-pane="funds">
+        <div class="admin-card">
+          <div class="ac-head"><h3>资金流水</h3><span style="font-size:12.5px;color:var(--ink-3)">专款专用 · 与运营方自有资金隔离</span></div>
+          <div class="admin-table-wrap"><table class="admin-table" id="fundsTable"></table></div>
+        </div>
+        <div class="audit-note" style="margin-top:0">
+          <span>🔒</span>
+          <span><b>说明：</b>资金流水与申请数据均来自项目数据库（SQLite），通过 <code style="background:rgba(255,255,255,.6);padding:2px 6px;border-radius:6px">node server.js</code> 启动后实时读取；正式版将对接支付平台与专项账户，自动生成凭证。</span>
+        </div>
+      </div>
+
+      <!-- 披露中心 -->
+      <div class="admin-pane" data-pane="disclosure">
+        <div class="admin-stats">
+          <div class="admin-stat"><span class="as-label">已披露季度</span><div class="as-value">10<small> 期</small></div><span class="as-ico" style="--a-bg:var(--green-soft)">✓</span></div>
+          <div class="admin-stat"><span class="as-label">最新报告</span><div class="as-value">2026 Q2</div><span class="as-ico" style="--a-bg:var(--blue-soft)">▤</span></div>
+          <div class="admin-stat"><span class="as-label">待发布</span><div class="as-value">1<small> 期</small></div><span class="as-ico" style="--a-bg:var(--yellow-soft)">◔</span></div>
+          <div class="admin-stat"><span class="as-label">审计状态</span><div class="as-value">正常</div><span class="as-ico" style="--a-bg:var(--lav-soft)">◆</span></div>
+        </div>
+        <div class="admin-card">
+          <div class="ac-head"><h3>季度报告</h3><button class="btn btn-sm btn-primary" data-demo="生成披露报告（正式版对接审计流程）">＋ 生成报告</button></div>
+          <div class="admin-table-wrap"><table class="admin-table" id="reportTable"></table></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/data.js?v=i"></script>
+
+  <script src="js/api.js?v=i"></script>
+  <script src="js/main.js?v=i"></script>
+  <script src="js/admin.js?v=i"></script>
+</body>
+</html>

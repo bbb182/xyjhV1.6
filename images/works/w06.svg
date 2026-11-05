@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FBF1E2"/>
+      <stop offset="1" stop-color="#F2DCC0"/>
+    </linearGradient>
+    <linearGradient id="fur" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6E5C8"/>
+      <stop offset="1" stop-color="#E2C28F"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <g opacity=".55">
+    <circle cx="110" cy="110" r="30" fill="#F2B8C6"/>
+    <path d="M680 90 C682 98 686 102 694 104 C686 106 682 110 680 118 C678 110 674 106 666 104 C674 102 678 98 680 90 Z" fill="#8F7CCF"/>
+    <circle cx="690" cy="500" r="22" fill="#A7CDB4"/>
+  </g>
+  <ellipse cx="400" cy="520" rx="220" ry="30" fill="#5B93C8" opacity=".1"/>
+  <g transform="translate(400 300)">
+    <ellipse cx="0" cy="50" rx="140" ry="120" fill="url(#fur)"/>
+    <ellipse cx="0" cy="40" rx="120" ry="95" fill="#F6E5C8"/>
+    <circle cx="-78" cy="-34" r="62" fill="url(#fur)"/>
+    <circle cx="78" cy="-34" r="62" fill="url(#fur)"/>
+    <circle cx="-78" cy="-34" r="52" fill="#F6E5C8"/>
+    <circle cx="78" cy="-34" r="52" fill="#F6E5C8"/>
+    <circle cx="-78" cy="-34" r="16" fill="#5C4331"/>
+    <circle cx="78" cy="-34" r="16" fill="#5C4331"/>
+    <circle cx="-82" cy="-38" r="4" fill="#FFFFFF"/>
+    <circle cx="74" cy="-38" r="4" fill="#FFFFFF"/>
+    <circle cx="0" cy="34" r="20" fill="#5C4331"/>
+    <ellipse cx="0" cy="52" rx="40" ry="26" fill="#5C4331"/>
+    <ellipse cx="0" cy="46" rx="24" ry="15" fill="#F2B8C6"/>
+    <path d="M0 78 L0 150 M-60 74 L-46 132 M60 74 L46 132" stroke="#5C4331" stroke-width="20" stroke-linecap="round"/>
+    <ellipse cx="0" cy="168" rx="44" ry="26" fill="#E2C28F"/>
+    <ellipse cx="-62" cy="150" rx="20" ry="14" fill="#5C4331"/>
+    <ellipse cx="62" cy="150" rx="20" ry="14" fill="#5C4331"/>
+    <path d="M-60 200 L-60 240 L-30 232 L-30 208 Z" fill="#E79E9E"/>
+    <path d="M60 200 L60 240 L30 232 L30 208 Z" fill="#E79E9E"/>
+    <path d="M-46 70 C-20 44 20 44 46 70 C30 52 -30 52 -46 70 Z" fill="#F2B8C6" opacity=".9"/>
+    <path d="M-14 42 L-10 26 L-4 40 L-10 30 Z" fill="#E79E9E"/>
+  </g>
+  <g fill="#F6C453">
+    <path d="M150 420 C152 428 156 432 164 434 C156 436 152 440 150 448 C148 440 144 436 136 434 C144 432 148 428 150 420 Z"/>
+    <path d="M640 380 C642 388 646 392 654 394 C646 396 642 400 640 408 C638 400 634 396 626 394 C634 392 638 388 640 380 Z" opacity=".85"/>
+  </g>
+</svg>

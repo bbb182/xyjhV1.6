@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>公益商城 · 星语计划 —— 非遗掐丝 星梦成真</title>
+  <meta name="description" content="星语计划公益商城：义卖特殊少年原创的掐丝珐琅作品，义卖收入 30% 定向捐赠中国残疾人福利基金会，去向公开可查。">
+  <link rel="icon" href="images/logo-icon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css?v=i">
+</head>
+<body data-page="mall">
+
+  <div id="app-header"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="crumb"><a href="index.html">首页</a><span class="sep">/</span><span>公益商城</span></nav>
+      <span class="eyebrow warm">STAR SHOP · 公益商城</span>
+      <h1>公益商城</h1>
+      <p>你的每一次购买，都会点亮一颗星星。每件掐丝珐琅作品的义卖收入去向，都在「公益公开」中透明呈现。</p>
+    </div>
+  </section>
+
+  <div class="mall-toolbar">
+    <div class="mall-toolbar-inner">
+      <div class="filter-chips" id="mallCats"></div>
+      <input type="text" id="mallSearch" placeholder="搜索商品，如：星空 / 帆布包">
+      <select class="sort-select" id="mallSort">
+        <option value="sales">销量优先</option>
+        <option value="latest">最新上架</option>
+        <option value="priceAsc">价格从低到高</option>
+        <option value="priceDesc">价格从高到低</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mall-layout">
+    <div>
+      <div class="gallery-head-row" style="padding:0;max-width:none;margin-bottom:22px">
+        <h2 id="mallTitle">全部商品</h2>
+        <span id="mallCount"></span>
+      </div>
+      <div class="mall-grid" id="mallGrid"></div>
+      <div class="gallery-empty" id="mallEmpty" style="display:none">
+        <p style="font-size:40px;margin-bottom:10px">✦</p>
+        <p>没有找到相关商品，试试其他关键词。</p>
+      </div>
+      <div class="mall-note">
+        <b>关于义卖收入：</b>商品售出后，收入进入「星语计划专项账户」，按四向反哺机制用于困难家庭帮扶、合作校教学物料采购、定向公益捐赠（30% 捐赠中国残疾人福利基金会）与项目运营，并为购买者颁发爱心证书。所有收支明细可在 <a href="public.html" style="color:var(--blue-deep);font-weight:600">公益公开</a> 页面查看；下单后可用订单号在 <a href="certificate.html" style="color:var(--blue-deep);font-weight:600">爱心证书</a> 页查询捐赠凭证。
+      </div>
+    </div>
+
+    <!-- 购物车 -->
+    <aside class="cart-panel">
+      <div class="cart-head">
+        <b>🛍 购物车</b>
+        <span id="cartInfo">0 件商品</span>
+      </div>
+      <div class="cart-list" id="cartList"></div>
+      <div class="cart-foot">
+        <div class="cart-total"><span>合计</span><b id="cartTotal">¥0</b></div>
+        <button class="checkout-btn" id="checkoutBtn">去结算</button>
+        <div class="cart-safe">
+          <span>🔒 安全支付</span>
+          <span>📦 公益配送</span>
+          <span>💛 透明公开</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div id="app-footer"></div>
+
+  <script src="js/data.js?v=i"></script>
+
+  <script src="js/api.js?v=i"></script>
+  <script src="js/main.js?v=i"></script>
+  <script src="js/mall.js?v=i"></script>
+</body>
+</html>

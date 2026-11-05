@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8FD4DC"/>
+      <stop offset=".55" stop-color="#4FA8BC"/>
+      <stop offset="1" stop-color="#2E7E96"/>
+    </linearGradient>
+    <linearGradient id="whale" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4A6B8E"/>
+      <stop offset="1" stop-color="#33526F"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#sea)"/>
+  <g stroke="#FFFFFF" stroke-opacity=".35" stroke-width="34" stroke-linecap="round">
+    <line x1="120" y1="0" x2="340" y2="260"/>
+    <line x1="560" y1="0" x2="430" y2="300"/>
+    <line x1="820" y1="40" x2="680" y2="240"/>
+  </g>
+  <g transform="translate(420 330)">
+    <ellipse cx="0" cy="0" rx="150" ry="92" fill="url(#whale)"/>
+    <path d="M-150 0 C-190 -30 -190 -60 -150 -76 C-110 -92 -120 -50 -150 -30 C-170 -16 -172 4 -150 0 Z" fill="#33526F"/>
+    <path d="M60 -70 C110 -90 170 -60 190 -20 L150 0 Z" fill="#4A6B8E"/>
+    <circle cx="60" cy="-34" r="5" fill="#FFE9B0"/>
+    <circle cx="80" cy="-20" r="3.5" fill="#FFE9B0"/>
+    <path d="M-70 20 C-30 40 20 44 60 30" stroke="#FFFFFF" stroke-opacity=".6" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M90 34 C120 50 140 58 165 64" stroke="#FFFFFF" stroke-opacity=".5" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+  <g fill="#FFF6DE" opacity=".9">
+    <circle cx="150" cy="200" r="10"/>
+    <circle cx="185" cy="235" r="7"/>
+    <circle cx="140" cy="270" r="5"/>
+    <circle cx="660" cy="180" r="9"/>
+    <circle cx="700" cy="215" r="6"/>
+    <circle cx="650" cy="250" r="4"/>
+    <circle cx="520" cy="520" r="8"/>
+    <circle cx="560" cy="548" r="5"/>
+  </g>
+  <g fill="#2E7E96">
+    <path d="M60 520 C50 480 70 470 92 480 C80 470 84 450 100 452 C92 440 108 432 118 448 C112 432 132 430 136 448 C140 432 158 438 152 454 C168 446 182 462 172 476 C190 472 200 490 186 502 C206 502 208 522 192 528 Z" opacity=".8"/>
+    <path d="M620 560 C614 534 628 526 644 534 C636 526 639 512 651 514 C645 504 658 498 666 510 C662 496 678 494 682 508 C686 494 700 500 694 514 C708 506 718 520 710 530 C724 526 732 540 722 550 C738 550 740 564 728 568 Z" opacity=".7"/>
+  </g>
+  <g fill="#F6C453" transform="rotate(-8 500 430)">
+    <path d="M480 430 L490 418 L500 430 L488 425 Z"/>
+    <path d="M500 430 L510 418 L520 430 L508 425 Z"/>
+  </g>
+  <g fill="#FFE9B0">
+    <path d="M640 90 C643 98 648 102 656 104 C648 106 643 110 640 118 C637 110 632 106 624 104 C632 102 637 98 640 90 Z" opacity=".8"/>
+    <path d="M220 80 C222.5 87 227 91.5 234 94 C227 96.5 222.5 101 220 108 C217.5 101 213 96.5 206 94 C213 91.5 217.5 87 220 80 Z" opacity=".7"/>
+  </g>
+</svg>

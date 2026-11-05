@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作品展示 · 星语计划非遗掐丝珐琅线上艺术馆</title>
+  <meta name="description" content="星语计划线上艺术馆：展示特殊少年原创的掐丝珐琅作品，每一件都附专属故事卡与爱心证书。">
+  <link rel="icon" href="images/logo-icon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css?v=i">
+</head>
+<body data-page="works">
+
+  <div id="app-header"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="crumb"><a href="index.html">首页</a><span class="sep">/</span><span>作品展示</span></nav>
+      <span class="eyebrow">STAR GALLERY · 线上艺术馆</span>
+      <h1>作品展示</h1>
+      <p>每一件掐丝珐琅作品，都是星星的语言。走进线上艺术馆，看见天赋、专注与成长的痕迹。</p>
+    </div>
+  </section>
+
+  <div class="gallery-toolbar">
+    <div class="toolbar-inner">
+      <div class="filter-chips" id="catChips"></div>
+      <div class="toolbar-right">
+        <input type="text" id="worksSearch" placeholder="搜索作品 / 作者" value="">
+        <select id="worksSort">
+          <option value="latest">最新发布</option>
+          <option value="priceAsc">价格从低到高</option>
+          <option value="priceDesc">价格从高到低</option>
+          <option value="sales">销量优先</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <section class="gallery-section">
+    <div class="container">
+      <div class="gallery-head-row">
+        <h2 id="listTitle">全部作品</h2>
+        <span id="listCount"></span>
+      </div>
+      <div class="work-grid fade-up" id="worksGrid"></div>
+      <div class="gallery-empty" id="worksEmpty" style="display:none">
+        <p style="font-size:40px;margin-bottom:10px">✦</p>
+        <p>没有找到符合条件的作品，换个关键词试试吧。</p>
+      </div>
+      <div class="load-more-wrap">
+        <button class="btn btn-ghost" id="loadMore">加载更多作品</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="app-footer"></div>
+
+  <script src="js/data.js?v=i"></script>
+
+  <script src="js/api.js?v=i"></script>
+  <script src="js/main.js?v=i"></script>
+  <script src="js/works.js?v=i"></script>
+</body>
+</html>

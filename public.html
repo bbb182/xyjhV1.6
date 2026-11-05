@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>公益公开 · 星语计划 —— 非遗掐丝 星梦成真</title>
+  <meta name="description" content="星语计划公益公开：义卖收入、四向反哺支出与季度披露，30% 定向捐赠中国残疾人福利基金会，每一份善意都有迹可循。">
+  <link rel="icon" href="images/logo-icon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css?v=i">
+  <style>
+    /* 资金流水 / 趋势图 / 披露报告 —— 本页新增展示，样式就地补充，不改 style.css */
+    .trend-chart{display:flex;align-items:flex-end;gap:32px;height:210px;margin-top:24px;padding:0 6px}
+    .trend-col{flex:1;display:flex;flex-direction:column;align-items:center;height:100%}
+    .trend-bars{display:flex;align-items:flex-end;justify-content:center;gap:10px;width:100%;height:100%}
+    .trend-bar{width:28px;min-height:4px;border-radius:8px 8px 4px 4px;position:relative;transition:height .5s ease}
+    .trend-bar em{position:absolute;top:-19px;left:50%;transform:translateX(-50%);font-style:normal;font-size:11px;color:var(--ink-3);white-space:nowrap}
+    .trend-month{font-size:12.5px;color:var(--ink-2);margin-top:10px;text-align:center}
+    .trend-legend{display:flex;gap:20px;justify-content:center;margin-top:16px;font-size:12.5px;color:var(--ink-3)}
+    .trend-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+    .report-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .report-card{background:#fff;border-radius:var(--r-lg);padding:24px 26px;box-shadow:var(--shadow-sm);display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .report-card b{font-size:15.5px;color:var(--ink)}
+    .report-card .rp-meta{font-size:12.5px;color:var(--ink-3);margin-top:8px;letter-spacing:.5px}
+    @media (max-width:820px){
+      .report-grid{grid-template-columns:1fr}
+      .trend-chart{gap:14px;height:180px}
+      .trend-bar{width:18px}
+      .report-card{padding:18px 20px}
+    }
+  </style>
+</head>
+<body data-page="public">
+
+  <div id="app-header"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="crumb"><a href="index.html">首页</a><span class="sep">/</span><span>公益公开</span></nav>
+      <span class="eyebrow green">TRANSPARENCY · 透明公开</span>
+      <h1>公益公开</h1>
+      <p>每一份善意都值得被认真对待。义卖收入、四向反哺的去向，我们全部公开、可查、可追溯。</p>
+    </div>
+  </section>
+
+  <!-- 核心数据 -->
+  <section class="section" style="padding-bottom:40px">
+    <div class="container">
+      <div class="trans-stats" id="transStats"></div>
+    </div>
+  </section>
+
+  <!-- 收入与支出 -->
+  <section class="section" style="padding-top:40px">
+    <div class="container">
+      <div class="chart-grid">
+        <div class="chart-card fade-up">
+          <h3>收入构成</h3>
+          <div class="chart-sub">累计收入 <b id="incomeTotal" style="color:var(--blue-deep)"></b> · 截至 2026 年 7 月</div>
+          <div class="donut-wrap">
+            <div class="donut">
+              <svg viewBox="0 0 200 200" id="incomeDonut"></svg>
+              <div class="donut-center"><b id="donutTotal"></b><span>累计收入</span></div>
+            </div>
+            <div class="legend" id="incomeLegend"></div>
+          </div>
+        </div>
+        <div class="chart-card fade-up">
+          <h3>支出构成</h3>
+          <div class="chart-sub">累计支出 <b id="expenseTotal" style="color:var(--green-deep)"></b> · 全部用于项目与帮扶</div>
+          <div class="bar-group" id="expenseBars"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 资金流向 -->
+  <section class="section" style="padding-top:40px">
+    <div class="container">
+      <div class="fund-flow fade-up">
+        <h3>资金流向图</h3>
+        <div class="chart-sub">义卖收入 → 项目专项账户 → 四向反哺，每一笔都可追溯</div>
+        <div class="flow-cols">
+          <div class="flow-col" id="flowSources"></div>
+          <div class="flow-center">
+            <div class="core">
+              <b>星语计划</b>
+              <span>专项公益账户</span>
+            </div>
+            <div class="plus">+</div>
+            <div style="font-size:13px;color:var(--ink-3)">专款专用 · 独立核算</div>
+          </div>
+          <div class="flow-col" id="flowUses"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 资金流水明细 -->
+  <section class="section" style="padding-top:40px">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">LEDGER · 资金流水</span>
+        <h2>每一笔收支，都可以查</h2>
+        <p>收入来自作品义卖与 B 端定制；支出按「四向反哺」流向家庭、学校与公益机构。</p>
+      </div>
+      <div class="trans-stats" id="fundSummary"></div>
+      <div class="table-wrap" style="overflow-x:auto;margin-top:28px">
+        <table class="disclosure-table">
+          <thead>
+            <tr><th>日期</th><th>类型</th><th>项目</th><th>金额</th><th>状态</th><th>说明</th></tr>
+          </thead>
+          <tbody id="fundRows">
+            <tr><td colspan="6" style="text-align:center;color:var(--ink-3)">正在读取资金流水…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="audit-note" id="fundHint" style="display:none">
+        <span>ℹ️</span>
+        <span><b>离线预览：</b>资金流水明细来自项目数据库，需通过 <code style="background:rgba(38,67,95,.06);padding:2px 6px;border-radius:6px">node server.js</code> 启动本地服务后查看。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 月度收支趋势 -->
+  <section class="section" style="padding-top:20px">
+    <div class="container">
+      <div class="chart-card fade-up" style="max-width:900px;margin:0 auto">
+        <h3>月度收支趋势</h3>
+        <div class="chart-sub">按月统计义卖收入与反哺支出，柱高按最大值等比缩放</div>
+        <div class="trend-chart" id="trendChart"></div>
+        <div class="trend-legend">
+          <span><i style="background:var(--blue-deep)"></i>收入</span>
+          <span><i style="background:var(--yellow-deep)"></i>支出</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 披露报告 -->
+  <section class="section" style="padding-top:20px">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow lav">REPORTS · 披露报告</span>
+        <h2>季度与年度审计报告</h2>
+        <p>每季度结束后发布收支明细，并邀请第三方公益机构审计。</p>
+      </div>
+      <div class="report-grid" id="reportList">
+        <div class="report-card"><b>正在读取报告…</b></div>
+      </div>
+      <div class="audit-note" id="reportHint" style="display:none">
+        <span>ℹ️</span>
+        <span>报告列表来自项目数据库，启动本地服务后可查看。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 月度披露 -->
+  <section class="section" style="padding-top:40px">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">DISCLOSURE · 季度披露</span>
+        <h2>近三月收支明细</h2>
+        <p>我们每季度发布收支明细，详细列明义卖收入、反哺金额、帮扶对象与资金用途，完整季度报告可在文末下载。</p>
+      </div>
+      <div class="table-wrap" style="overflow-x:auto">
+        <table class="disclosure-table">
+          <thead>
+            <tr><th>月份</th><th>收入</th><th>支出</th><th>结余</th><th>说明</th></tr>
+          </thead>
+          <tbody id="monthRows"></tbody>
+        </table>
+      </div>
+      <div class="audit-note">
+        <span>✅</span>
+        <span><b>审计说明：</b>本页面数据由项目专项账户提供，未经审计。每季度结束后，我们将邀请第三方公益机构对善款使用情况进行审计，并在此页面同步更新。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 公开原则 -->
+  <section class="section" style="padding-top:20px">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow lav">PRINCIPLES · 公开原则</span>
+        <h2>我们把透明当作底线</h2>
+      </div>
+      <div class="mission-grid" id="principleGrid"></div>
+    </div>
+  </section>
+
+  <div id="app-footer"></div>
+
+  <script src="js/data.js?v=i"></script>
+
+  <script src="js/api.js?v=i"></script>
+  <script src="js/main.js?v=i"></script>
+  <script src="js/public.js?v=i"></script>
+</body>
+</html>
